@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  storemdc.webapi:
+    image: storemdc.webapi
+    build:
+      context: ./StoreMDC.WebApi
+      dockerfile: Dockerfile

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\StoreMDC.Domain\StoreMDC.Domain.csproj" />
+    <ProjectReference Include="..\StoreMDC.Application\StoreMDC.Application.csproj" />
     <ProjectReference Include="..\StoreMDC.Infra.Data\StoreMDC.Infra.Data.csproj" />
   </ItemGroup>
 

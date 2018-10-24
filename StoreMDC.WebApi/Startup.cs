@@ -19,18 +19,10 @@ namespace StoreMDC.WebApi
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
-            //if (env.IsDevelopment())
-            //{
-            //    builder.AddUserSecrets<Startup>();
-            //}
-
-            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-
-            //builder.AddEnvironmentVariables();
-            //Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -38,31 +30,18 @@ namespace StoreMDC.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             services.AddWebApi(options =>
             {
                 options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
                 options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
-            });
-
-
-            services.AddAutoMapper();
-
-            services.AddMvcCore()
-                .AddJsonOptions(options =>
+            }).AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver
                     = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
             });
 
-            services.AddApiVersioning(o =>
-            {
-                o.ReportApiVersions = true;
-                o.AssumeDefaultVersionWhenUnspecified = true;
-                o.DefaultApiVersion = new ApiVersion(1, 0);
-            });
+            services.AddAutoMapperSetup();
 
             services.AddSwaggerGen(s =>
             {

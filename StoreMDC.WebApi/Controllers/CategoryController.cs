@@ -5,6 +5,7 @@ using System;
 
 namespace StoreMDC.WebApi.Controllers
 {
+    [ApiVersion("1.0")]
     public class CategoryController : Controller
     {
         private readonly ICategoryAppService _appService;

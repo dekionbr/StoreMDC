@@ -8,15 +8,29 @@ using Microsoft.Extensions.DependencyInjection;
 using StoreMDC.Infra.CrossCutting.IoC;
 using StoreMDC.WebApi.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
-using System.ComponentModel;
+using System.IO;
 
 namespace StoreMDC.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            //if (env.IsDevelopment())
+            //{
+            //    builder.AddUserSecrets<Startup>();
+            //}
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
+
+            //builder.AddEnvironmentVariables();
+            //Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -24,19 +38,30 @@ namespace StoreMDC.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //   options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddWebApi(options =>
             {
                 options.OutputFormatters.Remove(new XmlDataContractSerializerOutputFormatter());
-                options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));                
+                options.UseCentralRoutePrefix(new RouteAttribute("api/v{version}"));
             });
+
 
             services.AddAutoMapper();
 
-            services.AddMvc()
+            services.AddMvcCore()
                 .AddJsonOptions(options =>
             {
                 options.SerializerSettings.ContractResolver
-                    = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();                
+                    = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+            });
+
+            services.AddApiVersioning(o =>
+            {
+                o.ReportApiVersions = true;
+                o.AssumeDefaultVersionWhenUnspecified = true;
+                o.DefaultApiVersion = new ApiVersion(1, 0);
             });
 
             services.AddSwaggerGen(s =>
@@ -47,7 +72,7 @@ namespace StoreMDC.WebApi
                     Title = "Store MDC",
                     Description = "Store MDC API Swagger surface",
                     Contact = new Contact { Name = "Julio Cesar", Email = "silveira.julio@gmail.com", Url = "Http://silveirajulio@gmail.com" }
-                  
+
                 });
             });
 

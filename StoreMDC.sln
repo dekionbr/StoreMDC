@@ -24,15 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 -
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreMDC.Domain", "src\StoreMDC.Domain\StoreMDC.Domain.csproj", "{9EADAB4C-11FF-4BEC-8D42-9E5884DFBE80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreMDC.Infra.Data", "StoreMDC.Infra.Data\StoreMDC.Infra.Data.csproj", "{18A4C495-C4ED-49BA-BF32-CF1A1A105675}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreMDC.Infra.Data", "StoreMDC.Infra.Data\StoreMDC.Infra.Data.csproj", "{18A4C495-C4ED-49BA-BF32-CF1A1A105675}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreMDC.WebApi", "StoreMDC.WebApi\StoreMDC.WebApi.csproj", "{ABCEAB3D-68AC-4050-A7B1-BE4793F289FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreMDC.WebApi", "StoreMDC.WebApi\StoreMDC.WebApi.csproj", "{ABCEAB3D-68AC-4050-A7B1-BE4793F289FB}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9C3E09A6-EAD2-49CF-AC32-91B625F7E58A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreMDC.Infra.CrossCutting.IoC", "StoreMDC.Infra.CrossCutting.IoC\StoreMDC.Infra.CrossCutting.IoC.csproj", "{FB80A204-A68B-4859-9A63-5AE020232EBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreMDC.Infra.CrossCutting.IoC", "StoreMDC.Infra.CrossCutting.IoC\StoreMDC.Infra.CrossCutting.IoC.csproj", "{FB80A204-A68B-4859-9A63-5AE020232EBF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreMDC.Application", "StoreMDC.Application\StoreMDC.Application.csproj", "{BAB94F0F-480B-4AC4-90A4-3A7D856A4096}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreMDC.Application", "StoreMDC.Application\StoreMDC.Application.csproj", "{BAB94F0F-480B-4AC4-90A4-3A7D856A4096}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,10 +50,6 @@ Global
 		{ABCEAB3D-68AC-4050-A7B1-BE4793F289FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABCEAB3D-68AC-4050-A7B1-BE4793F289FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABCEAB3D-68AC-4050-A7B1-BE4793F289FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C3E09A6-EAD2-49CF-AC32-91B625F7E58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C3E09A6-EAD2-49CF-AC32-91B625F7E58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C3E09A6-EAD2-49CF-AC32-91B625F7E58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C3E09A6-EAD2-49CF-AC32-91B625F7E58A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB80A204-A68B-4859-9A63-5AE020232EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB80A204-A68B-4859-9A63-5AE020232EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB80A204-A68B-4859-9A63-5AE020232EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU

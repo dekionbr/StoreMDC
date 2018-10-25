@@ -33,6 +33,7 @@ namespace StoreMDC.Application.Services
         public void Insert(CategoryViewModel ViewModel)
         {
             _repository.Add(_mapper.Map<Category>(ViewModel));
+            
         }
 
         public void Remove(int id)

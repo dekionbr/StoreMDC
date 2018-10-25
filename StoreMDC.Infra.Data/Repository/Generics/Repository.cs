@@ -20,6 +20,7 @@ namespace StoreMDC.Infra.Data.Repository.Generics
         public virtual void Add(TEntity obj)
         {
             DbSet.Add(obj);
+            SaveChanges();
         }
 
         public virtual TEntity GetById(int id)
@@ -35,6 +36,7 @@ namespace StoreMDC.Infra.Data.Repository.Generics
         public virtual void Update(TEntity obj)
         {
             DbSet.Update(obj);
+            SaveChanges();
         }
 
         public virtual void Remove(int id)
